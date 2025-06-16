@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMLリンク生成ツール</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="text-center mb-4">HTMLリンク生成ツール</h1>
+                
+                <!-- タブナビゲーション -->
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="image-tab" data-bs-toggle="tab" data-bs-target="#image" type="button" role="tab">
+                            画像リンク生成
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="text-tab" data-bs-toggle="tab" data-bs-target="#text" type="button" role="tab">
+                            テキストリンク生成
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- タブコンテンツ -->
+                <div class="tab-content" id="myTabContent">
+                    <!-- 画像リンク生成タブ -->
+                    <div class="tab-pane fade show active" id="image" role="tabpanel">
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <form id="imageForm">
+                                    <div class="mb-3">
+                                        <label for="imageUrl" class="form-label">画像のURL:</label>
+                                        <input type="url" class="form-control" id="imageUrl" placeholder="https://example.com/image.jpg">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">画像リンクを生成</button>
+                                </form>
+                                
+                                <div id="imageResult" class="mt-3" style="display: none;">
+                                    <label class="form-label">生成されたHTML:</label>
+                                    <div class="code-output">
+                                        <textarea id="imageOutput" class="form-control" rows="4" readonly></textarea>
+                                        <button type="button" class="btn btn-success btn-sm mt-2" onclick="copyToClipboard('imageOutput')">
+                                            クリップボードにコピー
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- テキストリンク生成タブ -->
+                    <div class="tab-pane fade" id="text" role="tabpanel">
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <form id="textForm">
+                                    <div class="mb-3">
+                                        <label for="targetText" class="form-label">リンクを貼る単語:</label>
+                                        <input type="text" class="form-control" id="targetText" placeholder="クリックしてください">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="targetUrl" class="form-label">リンク先のURL:</label>
+                                        <input type="url" class="form-control" id="targetUrl" placeholder="https://example.com">
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="newTab">
+                                        <label class="form-check-label" for="newTab">
+                                            新しいタブで開く（target="_blank"）
+                                        </label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">テキストリンクを生成</button>
+                                </form>
+                                
+                                <div id="textResult" class="mt-3" style="display: none;">
+                                    <label class="form-label">生成されたHTML:</label>
+                                    <div class="code-output">
+                                        <textarea id="textOutput" class="form-control" rows="4" readonly></textarea>
+                                        <button type="button" class="btn btn-success btn-sm mt-2" onclick="copyToClipboard('textOutput')">
+                                            クリップボードにコピー
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- アラート表示エリア -->
+                <div id="alertContainer" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
